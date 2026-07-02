@@ -1,0 +1,36 @@
+{
+    "title": "Vietnam Exporter Scraper Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "keyword": {
+            "title": "Keyword (Industry/Exporter)",
+            "type": "string",
+            "description": "The specific export category (e.g., 'garment exporter', 'electronics', 'furniture').",
+            "editor": "textfield",
+            "prefill": "garment exporter"
+        },
+        "location": {
+            "title": "Location (City/Province)",
+            "type": "string",
+            "description": "Vietnam Province or City (e.g., 'Ho Chi Minh City', 'Hanoi', 'Binh Duong').",
+            "editor": "textfield",
+            "prefill": "Ho Chi Minh City"
+        },
+        "maxLeads": {
+            "title": "Maximum Leads",
+            "type": "integer",
+            "description": "Maximum number of Vietnam exporter leads to extract.",
+            "default": 100,
+            "minimum": 1
+        },
+        "proxyConfiguration": {
+            "title": "Proxy Configuration",
+            "type": "object",
+            "description": "Proxy settings. Apify Residential Proxy (Vietnam targeted) is highly required.",
+            "prefill": { "useApifyProxy": true },
+            "editor": "proxy"
+        }
+    },
+    "required": ["keyword", "location"]
+}
