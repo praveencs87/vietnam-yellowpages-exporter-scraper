@@ -1,37 +1,40 @@
 {
-    "actorSpecification": 1,
-    "name": "vietnam-yellowpages-exporter-scraper",
-    "title": "Vietnam Exporter Scraper | YellowPages",
-    "description": "Extract verified exporters, manufacturers, and trading companies in Vietnam. Premium B2B sourcing leads.",
-    "version": "1.0",
-    "input": "./input_schema.json",
-    "dockerfile": "./Dockerfile",
-    "minMemoryMbytes": 1024,
-    "maxMemoryMbytes": 4096,
-    "pricingModel": "PAY_PER_EVENT",
-    "pricingEvents": [
-        {
-            "eventName": "apify-actor-start",
-            "pricePerEvent": 0.25,
-            "description": "Base fee for starting the crawler (Playwright overhead)"
-        },
-        {
-            "eventName": "lead-extracted",
-            "pricePerEvent": 0.0035,
-            "description": "Charged per Vietnam Exporter lead successfully extracted ($3.50 per 1k leads)"
-        }
-    ],
-    "isPublic": true,
-    "seoTitle": "Vietnam Exporter Scraper | Sourcing B2B Leads",
-    "seoDescription": "Scrape verified exporters, garment manufacturers, and trading companies in Vietnam. Extract direct contacts for global supply chain sourcing.",
-    "categories": [
-        "LEAD_GENERATION",
-        "BUSINESS",
-        "E_COMMERCE"
-    ],
-    "defaultRunOptions": {
-        "build": "latest",
-        "timeoutSecs": 1800,
-        "memoryMbytes": 4096
+  "actorSpecification": 1,
+  "name": "vietnam-yellowpages-exporter-scraper",
+  "title": "Vietnam Exporter Scraper | YellowPages",
+  "description": "Extract verified exporters, manufacturers, and trading companies in Vietnam. Premium B2B sourcing leads.",
+  "version": "1.0",
+  "input": "./input_schema.json",
+  "dockerfile": "./Dockerfile",
+  "minMemoryMbytes": 1024,
+  "maxMemoryMbytes": 4096,
+  "pricingModel": "PAY_PER_EVENT",
+  "pricingEvents": [
+    {
+      "eventName": "apify-actor-start",
+      "pricePerEvent": 0.25,
+      "description": "Base fee for starting the crawler (Playwright overhead)"
+    },
+    {
+      "eventName": "lead-extracted",
+      "pricePerEvent": 0.0035,
+      "description": "Charged per Vietnam Exporter lead successfully extracted ($3.50 per 1k leads)"
     }
+  ],
+  "isPublic": true,
+  "seoTitle": "Vietnam Exporter Scraper | Sourcing B2B Leads",
+  "seoDescription": "Scrape verified exporters, garment manufacturers, and trading companies in Vietnam. Extract direct contacts for global supply chain sourcing.",
+  "categories": [
+    "LEAD_GENERATION",
+    "BUSINESS",
+    "E_COMMERCE"
+  ],
+  "defaultRunOptions": {
+    "build": "latest",
+    "timeoutSecs": 1800,
+    "memoryMbytes": 4096
+  },
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  }
 }
