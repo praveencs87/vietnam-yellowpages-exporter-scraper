@@ -3,19 +3,14 @@
     "type": "object",
     "schemaVersion": 1,
     "properties": {
-        "keyword": {
-            "title": "Keyword (Industry/Exporter)",
-            "type": "string",
-            "description": "The specific export category (e.g., 'garment exporter', 'electronics', 'furniture').",
-            "editor": "textfield",
-            "prefill": "garment exporter"
-        },
-        "location": {
-            "title": "Location (City/Province)",
-            "type": "string",
-            "description": "Vietnam Province or City (e.g., 'Ho Chi Minh City', 'Hanoi', 'Binh Duong').",
-            "editor": "textfield",
-            "prefill": "Ho Chi Minh City"
+        "startUrls": {
+            "title": "Start URLs",
+            "type": "array",
+            "description": "List of search URLs to scrape.",
+            "editor": "requestListSources",
+            "prefill": [
+                { "url": "https://yellowpages.vn/cate/118497/garment-exporter.html" }
+            ]
         },
         "maxLeads": {
             "title": "Maximum Leads",
@@ -32,5 +27,5 @@
             "editor": "proxy"
         }
     },
-    "required": ["keyword", "location"]
+    "required": ["startUrls"]
 }

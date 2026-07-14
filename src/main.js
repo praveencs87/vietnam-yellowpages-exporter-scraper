@@ -7,8 +7,7 @@ await Actor.init();
 try {
     const input = await Actor.getInput();
     const { 
-        keyword = 'garment exporter', 
-        location = 'Ho Chi Minh City', 
+        startUrls = [],
         maxLeads = 100,
         proxyConfiguration 
     } = input || {};
@@ -19,7 +18,7 @@ try {
         apifyProxyCountry: 'VN'
     });
 
-    log.info(`Searching Vietnam directories for "${keyword}" in "${location}"`);
+    log.info(`Searching Vietnam directories...`);
     
     await Actor.charge({ eventName: 'apify-actor-start', count: 1 });
 
@@ -60,7 +59,7 @@ try {
 
                 // Category
                 const catElement = await item.$('.category, .industry, .cat-link, .nganhnghe');
-                const industry = catElement ? (await catElement.innerText()).trim() : keyword;
+                const industry = catElement ? (await catElement.innerText()).trim() : '';
 
                 // Phones
                 const phoneElement = await item.$('a[href^="tel:"], .phone, .contact-number, .call-btn, .mobile, .dienthoai');
@@ -143,14 +142,14 @@ try {
         }
     });
 
-    const formatKeyword = encodeURIComponent(keyword);
-    const formatLocation = encodeURIComponent(location);
-    // Generic URL for VN directories
-    const startUrl = `https://yellowpages.vnn.vn/srch/all/${formatKeyword}.html`;
-    
-    await crawler.addRequests([{
-        url: startUrl
-    }]);
+    if (startUrls && startUrls.length > 0) {
+        for (const req of startUrls) {
+            await crawler.addRequests([{ url: typeof req === 'string' ? req : req.url }]);
+        }
+    } else {
+        log.warning('No startUrls provided. Using default.');
+        await crawler.addRequests([{ url: 'https://yellowpages.vn/cate/118497/garment-exporter.html' }]);
+    }
 
     armKillSwitch(crawler);
     await crawler.run();
